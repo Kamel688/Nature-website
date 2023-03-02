@@ -1,0 +1,409 @@
+
+@use '_colors.scss' as *;
+@use '_components.scss' as *;
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+body {
+	color: #333;
+	font-family: "Montserrat", sans-serif;
+}
+
+//navbar
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    width: 100%;
+    background-color: white;
+    text-transform: uppercase;
+    z-index: 1;
+    &__desktop-list-item{
+        display: none;
+    }
+    &__logo{
+        display: flex;
+        align-items: center;
+    }
+    &__logo-text{
+        margin-left: 0.5em;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+    }
+    &__logo-color{
+        color: $main-color;
+    }
+    .fa-tree{
+        font-size: 3rem;
+        transition: color 0.3s;
+        &:hover{
+            color: $main-color;
+        }
+    }
+    &__burger-btn{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 4em;
+        width: 45px;
+        height: 35px;
+        cursor: pointer;
+   
+    }
+    &__bars, 
+    &__bars::before, 
+    &__bars::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: $black-color;
+        border-radius: 8px;
+        transition: 0.3s;
+        z-index: 1;
+    }
+    
+    &__bars::before{
+        transform: translateY(-13px);
+    }
+    &__bars::after{
+        transform: translateY(13px);
+    }
+    &__active{
+        transform: translateX(-50px);
+        background: transparent;
+        box-shadow: none;
+        &::before {
+            transform: rotate(45deg) translate(35px, -35px);
+        }
+        &::after{
+            transform: rotate(-45deg) translate(35px, 35px);
+        }
+    }
+
+    &__mobile-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateX(150%);
+        font-size: 2.4rem;
+        background-color: $gray;
+        transition: transform 0.3s;
+    }
+    &__mobile-list-active{
+        transform: translateX(0);
+    }
+    &__mobile-list-item{
+        position: relative;
+        padding: 1em 2em;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: $black-color;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background-color: $main-color;
+            transform: scale(0);
+            transition: transform 0.3s;
+        }
+        &:hover::before{
+            transform: scale(1);
+        }
+    }
+
+
+}
+
+//header
+.header{
+    position: relative;
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    &__slider{
+        position: relative;
+        display: flex;
+        transition: transform 0.3s;
+    }
+    &__slider-img{
+        min-width: 100%;
+        height: 60vh;
+        background-position: center;
+        background-size: cover;
+        z-index: -1;
+    }
+    &__shadow{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+        z-index: 0;
+    }
+
+    &__text{
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        padding: 1em;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        color: $pure-white;
+        text-align: center;
+        z-index: 1;
+    }
+    &__title{
+        margin-bottom: 0.3em;
+        font-size: 2.4rem;
+        text-transform: uppercase;
+    }
+    &__title-span{
+        color: $main-color;
+    }
+    &__description{
+        font-size: 1.7rem;
+    }
+    
+    &__btn{
+        padding: 0.7em 1.4em;
+        margin-top: 0.5em;
+        font-size: 1.4rem;
+        background-color: $main-color;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    &__circle-box{
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-self: flex-end;
+        z-index: 1;
+    }
+    &__circle{
+        margin-right: 1em;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 2px solid $pure-white;
+        cursor: pointer;
+    }
+    &__circle-active{
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+//main
+.main{
+    .about-us{
+        &__box{
+            margin-bottom: 5em;
+        }
+        &__img{
+            width: 100%;
+            margin-bottom: 0.6em;
+        }
+     
+        &__title{
+            margin-bottom: 0.2em;
+            font-size: 1.7rem;
+        }
+        &__text{
+            font-size: 1.4rem;
+            line-height: 1.3em;
+        }
+        &__icons{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        &__icons-box{
+            padding: 2rem 1em;
+            margin: 2rem;
+            border: 2px solid $main-color;
+            flex: 1 1 20rem;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            i{
+                font-size: 3rem;
+                color: $main-color;
+            }
+        }
+        &__icons-number{
+            font-size: 2.3rem;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        &__icons-text{
+            margin: 0.5em 0;
+            font-size: 1.7rem;
+            color: #777;
+            transition: color 0.3s;
+        }
+
+        &__icons-box:hover{
+            transform: scale(1.1);
+            border: none;
+            background-color: $main-color;
+            .about-us__icons-number{
+                color: $pure-white;
+            }
+            .about-us__icons-text{
+                color: $pure-white;
+            }
+            i{
+                color: $pure-white;
+            }
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------------------------Media------------------------------------------------------------------------------------------
+//max-width
+
+//min-width
+@media(min-width: 576px){
+    .main{
+        .about-us{
+            &__box{
+                display: flex;
+                justify-content: space-between;
+            }
+            &__text-box{
+                width: 55%;
+            }
+            &__text-box--right{
+                text-align: right;
+            }
+            &__img{
+                width: 40%;
+                max-height: 300px;
+            }
+            &__img--right{
+                order: 1;
+            }
+            &__text--right{
+                text-align: right;
+            }
+        }
+    }
+}
+@media(min-width: 768px){
+    .header{
+        &__title{
+            font-size: 3.2rem;
+        }
+        &__description{
+            font-size: 1.9rem;
+        }
+    }
+}
+@media(min-width: 992px){
+    .navbar{
+        &__burger-btn{
+            display: none;
+        }
+        &__desktop-list{
+            display: flex;
+        }
+        &__desktop-list-item{
+            display: list-item;
+            position: relative;
+            margin-right: 2em;
+            padding: 0 0.5em 0em 0.5em;
+            color: $black-color;
+            font-size: 1.5rem;
+            text-decoration: none;
+            list-style: none;
+            transition: color 0.3s;
+            &::before{
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                width: 100%;
+                height: 2px;
+                background-color: $main-color;
+                transform: scaleX(0);
+                transition: transform 0.3s;
+            }
+            &:hover::before{
+                transform: scaleX(1);
+            }
+            &:hover{
+                color: $main-color;
+            }
+        }
+        &__logo{
+            padding: 0;
+        }
+    }
+    .main{
+        .about-us{
+            &__title{
+                font-size: 2rem;
+            }
+            &__text{
+                font-size: 1.7rem;
+            }
+        }
+    }
+}
+
+@media(min-width: 1200px){
+    .navbar{
+        justify-content: space-around;
+        &__desktop-list-item{
+            font-size: 1.6rem;
+        }
+    }
+    .header{
+        align-items: space-between;
+        &__box{
+            margin-left: 10em;
+        }
+        &__text{
+            margin-left: 12em;
+            text-align: left;
+        }
+        &__title{
+            font-size: 3.6rem;
+            
+        }
+        &__description{
+           font-size: 2.3rem;
+        }
+    }
+    .main{
+        .about-us{
+           &__text{
+            align-items: center;
+           }
+           &__icons-text{
+            font-size: 1.8rem;
+           }
+        }
+    }
+}
