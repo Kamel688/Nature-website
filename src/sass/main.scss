@@ -1,6 +1,7 @@
 
 @use '_colors.scss' as *;
 @use '_components.scss' as *;
+
 *, *::before, *::after{
     box-sizing: border-box;
     margin: 0;
@@ -57,6 +58,7 @@ body {
         width: 45px;
         height: 35px;
         cursor: pointer;
+        z-index: 11;
    
     }
     &__bars, 
@@ -102,8 +104,9 @@ body {
         height: 100%;
         transform: translateX(150%);
         font-size: 2.4rem;
-        background-color: $gray;
+        background-color: $pure-white;
         transition: transform 0.3s;
+        z-index: 10;
     }
     &__mobile-list-active{
         transform: translateX(0);
@@ -278,6 +281,101 @@ body {
             }
         }
     }
+
+    .location{
+        &__container{
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .wrapper{
+            overflow-x: auto;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+        }
+        &__boxes{
+            display: flex;
+            padding: 1.5em 1em;
+           
+        }
+        &__box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 4em;
+            min-width: 100%;
+            box-shadow: 4px 5px 10px #999999;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            &:hover{
+                transform: scale(0.95);
+            }
+        }
+        &__img{
+            width: 100%;
+        }
+        &__box-img{
+            position: relative;
+        }
+        &__line{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40%;
+            height: 3px;
+            background-color: $main-color;
+            border-radius: 8px;
+        }
+        &__box-title{
+            margin-top: 0.7em;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        &__box-text{
+            padding: 1em;
+            font-size: 1.6rem;
+            line-height: 22px;
+        }
+        &__box-btn{
+            margin-bottom: 1em;
+            padding: 0.7em 1.4em;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            background-color: $main-color;
+            color: $pure-white;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        &__arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
+
+        &__left-arrow{
+            left: -20px;
+            border-left: 4px solid $main-color;
+            border-bottom: 4px solid $main-color;
+           
+        }
+        &__right-arrow{
+            right: -20px;
+            border-top: 4px solid $main-color;
+            border-right: 4px solid $main-color;
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------Media------------------------------------------------------------------------------------------
@@ -308,6 +406,7 @@ body {
                 text-align: right;
             }
         }
+  
     }
 }
 @media(min-width: 768px){
@@ -317,6 +416,16 @@ body {
         }
         &__description{
             font-size: 1.9rem;
+        }
+    }
+    .main{
+        .location{
+            &__boxes{
+                padding-right: 5em;
+            }
+            &__box{
+                min-width: 50%;
+            }
         }
     }
 }
@@ -369,6 +478,14 @@ body {
                 font-size: 1.7rem;
             }
         }
+        .location{
+            &__boxes{
+                padding-right: 9.2em;
+            }
+            &__box{
+                min-width: 33.33%;
+            }
+        }
     }
 }
 
@@ -404,6 +521,19 @@ body {
            &__icons-text{
             font-size: 1.8rem;
            }
+        }
+    }
+}
+
+@media(min-width: 1300px){
+    .main{
+        .location{
+            &__left-arrow{
+                left: -35px;
+            }
+            &__right-arrow{
+                right: -35px;
+            }
         }
     }
 }
