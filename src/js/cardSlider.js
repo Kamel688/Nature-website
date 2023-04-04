@@ -4,14 +4,20 @@ const cardStyles = cards[0].currentStyle || window.getComputedStyle(cards[0]);
 const leftArrow = document.querySelector('.location__left-arrow');
 const rightArrow = document.querySelector('.location__right-arrow');
 
+
 const sliderSpeed = 3000;
 let cardShift = 0;
 
 const handleCardSlider = () => {
-    cardShift++;
-    changeCard();
+    //Jeśli sprawdzana jest lokalizacja przez użytkownika to zatrzymany zostanie slider
+    if(!locationShadow.classList.contains("location__open-shadow")){
+        cardShift++;
+        changeCard();
+    }else{
+        resetCardInterval();
+    }
 }
-//let startCardSlider = setInterval(handleCardSlider, sliderSpeed);
+let startCardSlider = setInterval(handleCardSlider, sliderSpeed);
 
 const changeCard = () => {
     const cardWidth = cards[0].clientWidth;
@@ -38,7 +44,6 @@ const changeCard = () => {
         }
     }
     cardBox.style.transform = `translateX(${-(cardWidth + cardMargin) * cardShift}px)`
-    console.log(cardShift);
 }
 
 const resetCardInterval = () => {
@@ -56,9 +61,6 @@ const handleRightArrow = () => {
     resetCardInterval();
 }
 
-
-
-window.addEventListener('resize', resetCardInterval);
-
+window.addEventListener('resize', resetCardInterval); //Zatrzymanie slidera w trakcie zmiany szerokości przeglądarki
 leftArrow.addEventListener('click', handleleftArrow);
 rightArrow.addEventListener('click', handleRightArrow);
