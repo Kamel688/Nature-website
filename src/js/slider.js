@@ -69,7 +69,6 @@ const resetInterval = () => {
     clearInterval(startSlider);
     changeImages();
     startSlider = setInterval(handleSlider, sliderSpeed);
-    console.log('zxc');
 }
 
 circles.forEach(circle => {
