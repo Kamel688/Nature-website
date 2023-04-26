@@ -1,6 +1,7 @@
 
 @use '_colors.scss' as *;
 @use '_components.scss' as *;
+@use '_mixins.scss' as *;
 
 *, *::before, *::after{
     box-sizing: border-box;
@@ -40,6 +41,7 @@ body {
         text-transform: uppercase;
     }
     &__logo-color{
+        font-weight: 700;
         color: $main-color;
     }
     .fa-tree{
@@ -283,6 +285,16 @@ body {
     }
 
     .location{
+        position: relative;
+        @include heroImage('/dist/img/test2-2.jpg');
+        &__shadow-background{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
         &__shadow{
             display: none;
             position: fixed;
@@ -345,7 +357,6 @@ body {
         }
         &__open-map{
             display: inline;
-            //display: block !important;
         }
 
 
@@ -364,6 +375,9 @@ body {
                 display: none;
             }
         }
+        .section-heading{
+            color: $pure-white;
+        }
         &__boxes{
             display: flex;
             padding: 1.5em 1em;
@@ -373,7 +387,8 @@ body {
         &__box{
             margin-right: 4em;
             min-width: 100%;
-            box-shadow: 4px 5px 10px #999999;
+            box-shadow: 4px 5px 10px #3e3e3e;
+            background-color: $pure-white;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s;
@@ -448,6 +463,200 @@ body {
             border-right: 4px solid $main-color;
         }
     }
+    .offer{
+        &__card{
+            position: relative;
+            margin-bottom: 3em;
+            height: 450px;
+            color: $pure-white;
+            perspective: 1000px;
+            transition: transform 0.3s;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
+        &__card:first-child{
+            .offer__card-img{
+                background-image: $green-gradient-color, url('/dist/img/location1.jpg');
+            }
+            .offer__card-details-btn{
+                background-color: $main-color;
+            }
+        }
+        &__card:nth-child(2){
+            .offer__card-img{
+                background-image: $yellow-gradient-color, url('/dist/img/location1.jpg');
+            }
+            .offer__card-details{
+                background-image: $yellow-gradient-color;
+            }
+            .offer__card-details-btn{
+                background-color: orange;
+            }
+        }
+        &__card:last-child{
+            .offer__card-img{
+                background-image: $green-gradient-color, url('/dist/img/location1.jpg');
+            }
+            .offer__card-details-btn{
+                background-color: $main-color;
+            }
+        }
+        &__card-img{
+            display: flex;
+            flex-direction: column;
+            padding: 3em;
+            height: 100%;
+            color: $pure-white;
+            background-size: cover;
+            border-radius: 8px;
+            transition: transform 0.6s, opacity 0.6s;
+     
+        }
+        &__card-title{
+            font-size: 2.2rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        &__card-info{
+            margin-top: auto;
+            margin-left: auto;
+            font-size: 1.6rem;
+            cursor: pointer;
+            z-index: 1;
+        }
+        &__card-details{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            transform: rotateY(180deg);
+            background-image: $green-gradient-color;
+            border-radius: 8px;
+            opacity: 0;
+            transition: transform 0.6s, opacity 0.6s;
+        }
+        &__card-details-title{
+            position: absolute;
+            top: 30px;
+            left: 50%;
+	        transform: translateX(-50%);
+            font-size: 2.2rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        &__card-details-list{
+            margin: 0 auto;
+            width: 80%;
+            list-style: none;
+            font-size: 1.6rem;
+        }
+        &__card-details-list-item{
+            padding: 1em;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            &:last-child{
+                border: none;
+            }
+        }
+        &__card-details-btns{
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            padding: 0 2em;
+            width: 100%;
+
+
+        }
+        &__card-details-btn{
+            padding: 1em;
+            margin: 0 0.5em;
+            width: 100%;
+            border: none;
+            font-size: 1.4rem;
+            color: $pure-white;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        &__rotate-card{
+            .offer__card-img{
+                transform: rotateY(-180deg);
+                opacity: 0;
+            }
+            .offer__card-details{
+                transform: rotateY(0);
+                opacity: 1;
+            }
+        }
+        .fa-arrow-left{
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 2.4rem;
+            cursor: pointer;
+        }
+        &__card-arrow{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        &__card-left-arrow{
+            position: relative;
+            width: 21px;
+            height: 21px;
+            border-top: 4px solid $pure-white;
+            border-left: 4px solid $pure-white;
+            transform: rotate(-45deg);
+            border-radius: 2px;
+            cursor: pointer;
+            &:before{
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background-color: $pure-white;
+                transform: rotate(45deg);
+                border-radius: 2px;
+            }
+        }
+        &__card-cross{
+            position: absolute;
+            top: 25px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+
+        }
+        &__card-crossline{
+            position: relative;
+            width: 100%;
+            height: 3px;
+            background-color: $pure-white;
+            transform: rotate(45deg);
+            cursor: pointer;
+            &:before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: $pure-white;
+                transform: rotate(90deg);
+            }
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------Media------------------------------------------------------------------------------------------
@@ -498,8 +707,20 @@ body {
             &__box{
                 min-width: 50%;
             }
-       
-          
+        }
+        .offer{
+            &__cards{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            &__card{
+                margin-bottom: 4em;
+                width: 47%;
+                &:first-child{
+                    margin-right: 4em;
+                }
+            }
         }
     }
 }
@@ -558,6 +779,14 @@ body {
             }
             &__box{
                 min-width: 33.33%;
+            }
+        }
+        .offer{
+            &__card{
+                width: 30%;
+                &:nth-child(2){
+                    margin-right: 4em;
+                }
             }
         }
     }

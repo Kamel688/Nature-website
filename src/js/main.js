@@ -8,9 +8,11 @@ const locationBtns = document.querySelectorAll('.location__box-btn');
 const closeBtn = document.querySelector('.location__close-btn');
 const locationMaps = document.querySelectorAll('iframe');
 
+const offerCards = document.querySelectorAll('.offer__card');
+const moreInfos = document.querySelectorAll('.offer__card-info');
+const returnCardBtns = document.querySelectorAll('.offer__card-details-exit-btn');
 
-let shift = 0;
-const sliderSpeed = 3000;
+
 
 //wysuwanie nagigacji mobilnej i zmiana przycisku
 const handleNav = ()=> {
@@ -42,13 +44,43 @@ const closeLocation = () => {
     })
 }
 
+//Offer card functions
+const rotateCard = (e) => {
+    const activeCard = e.target.closest('.offer__card');
+    offerCards.forEach(offerCard => {
+        offerCard.classList.remove('offer__rotate-card');
+    })
+    activeCard.classList.add('offer__rotate-card');
+}
+const returnToCard = (e) => {
+    const activeCard = e.target.closest('.offer__card');
+    activeCard.classList.remove('offer__rotate-card');
+}
+
+const clickOutsideCard = (e) => {
+    const card = e.target.closest('.offer__card');
+    offerCards.forEach(offerCard => {
+        if(offerCard.classList.contains('offer__rotate-card') && !card){
+            offerCard.classList.remove('offer__rotate-card');
+        }
+    })
+}
+//offer cards end
+
+//Add event listeners
 burgerBtn.addEventListener('click', handleNav);
 locationBtns.forEach(locationBtn => {
     locationBtn.addEventListener('click', openLocation);
 })
+
 closeBtn.addEventListener('click', closeLocation);
-
-
+moreInfos.forEach(moreInfo => {
+    moreInfo.addEventListener('click', rotateCard);
+})
+returnCardBtns.forEach(returnCardBtn => {
+    returnCardBtn.addEventListener('click', returnToCard);
+})
+window.addEventListener('click', clickOutsideCard);
 
 // window.addEventListener('scroll', resetInterval); // zatrzmany slider po zmianie szerokości
 // window.addEventListener('scroll', changeImages); // po zmianie szerokości należy ponownie dokonać obliczeń (ponowne wywołanie funkcji)
