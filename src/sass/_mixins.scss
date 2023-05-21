@@ -1,3 +1,4 @@
+@use "_colors.scss" as *;
 @mixin heroImage($url){
     background-image: url($url);
     background-size: cover;
@@ -13,4 +14,26 @@
     height: 100%;
     background-color: rgba(0,0,0,0.4);
     z-index: 0;
+}
+
+@mixin arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+@mixin leftArrow{
+    left: -20px;
+    border-left: 4px solid $main-color;
+    border-bottom: 4px solid $main-color;
+}
+
+@mixin rightArrow{
+    right: -20px;
+    border-top: 4px solid $main-color;
+    border-right: 4px solid $main-color;
 }

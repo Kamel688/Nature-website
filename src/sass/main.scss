@@ -433,25 +433,15 @@ body {
             cursor: pointer;
         }
         &__arrow{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 25px;
-            height: 25px;
-            transform: rotate(45deg);
-            cursor: pointer;
+            @include arrow();
         }
 
         &__left-arrow{
-            left: -20px;
-            border-left: 4px solid $main-color;
-            border-bottom: 4px solid $main-color;
+            @include leftArrow();
            
         }
         &__right-arrow{
-            right: -20px;
-            border-top: 4px solid $main-color;
-            border-right: 4px solid $main-color;
+            @include rightArrow();
         }
     }
     .offer{
@@ -770,6 +760,103 @@ body {
             cursor: pointer;
         }
     }
+    .reviews{
+        position: relative;
+        .wrapper {
+			overflow-x: auto;
+			&::-webkit-scrollbar{
+				display: none;
+			}
+		}
+        &__body{
+			position: relative;
+			margin: 0 auto;
+			width: 100%;
+			max-width: 1200px;
+		}
+        &__cards{
+            display: flex;
+            padding: 1.5em 1.3em;
+			transition: transform 0.3s;
+        }
+        &__card{
+            position: relative;
+            margin-top: 6em;
+			margin-bottom: 1em;
+			margin-right: 4em;
+            padding: 3em 2.5em;
+            min-width: 100%;
+            box-shadow: 4px 5px 10px #3e3e3e;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+            &:hover{
+                background-color: $main-color;
+                color: $pure-white;
+                .reviews__card-star {
+                    background-color: $pure-white;
+                }
+                .reviews__card-profession{
+                    color: $pure-white;
+                }
+            }
+        }
+        &__card-body{
+            overflow: hidden;
+        }
+        &__card-box{
+            overflow: hidden;
+            background-color: red;
+        }
+        &__img{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid $pure-white;
+        }
+        &__card-name{
+            margin-top: 1.8em;
+            margin-bottom: 0.2em;
+            font-size: 1.8rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        &__card-profession{
+            margin-bottom: 0.7em;
+            font-size: 1.5rem;
+            text-align: center;
+            color: #777;
+        }
+        &__card-text{
+            margin-bottom: 0.5em;
+            font-size: 1.6rem;
+            line-height: 1.4;
+        }
+        &__card-stars{
+            display: flex;
+            justify-content: center;
+        }
+        &__card-star {
+            background-color: $main-color;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            height: 30px;
+            width: 30px;
+        }
+        &__arrow{
+            @include arrow();
+        }
+        &__left-arrow{
+            @include leftArrow();
+           
+        }
+        &__right-arrow{
+            @include rightArrow();
+        }
+    }
 }
 
 //-------------------------------------------------------------------------------------------------Media------------------------------------------------------------------------------------------
@@ -849,6 +936,14 @@ body {
             }
          
         }
+        .reviews{
+			&__cards{
+				padding-right: 5.3em;
+			}
+			&__card{
+				min-width: 50%;
+			}
+		}
     }
 }
 @media(min-width: 992px){
@@ -921,6 +1016,14 @@ body {
                 width: 28%;
             }
         }
+        .reviews{
+			&__cards{
+				padding-right: 9.2em;
+			}
+			&__card{
+				min-width: 33.33%;
+			}
+		}
     }
 }
 
@@ -982,6 +1085,14 @@ body {
 @media(min-width: 1300px){
     .main{
         .location{
+            &__left-arrow{
+                left: -35px;
+            }
+            &__right-arrow{
+                right: -35px;
+            }
+        }
+        .reviews{
             &__left-arrow{
                 left: -35px;
             }
