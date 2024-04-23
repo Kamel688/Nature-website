@@ -1,30 +1,78 @@
-@use '_colors.scss' as *;
-.section-heading{
-    position: relative;
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
-    font-size: 2.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    &:before{
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: -4px;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 4px;
-        background-color: $main-color;
-        border-radius: 8px;
-    }
+@use "_colors.scss" as *;
+.section-heading {
+	position: relative;
+	margin-top: 0.5em;
+	margin-bottom: 1.5em;
+	font-size: 2.5rem;
+	text-align: center;
+	text-transform: uppercase;
+	&:before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: -4px;
+		transform: translateX(-50%);
+		width: 50px;
+		height: 4px;
+		background-color: $main-color;
+		border-radius: 8px;
+	}
 }
 
-.wrapper{
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1200px;
 }
 
-.section-padding{
-    padding: 3em;
+.section-padding {
+	padding: 3em;
+}
+
+.circle-animation {
+	animation: circleAnimation 0.4s linear;
+}
+
+.btn-animation {
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		//background-image: $black-gradient-color;
+		z-index: -1;
+		border-radius: 8px;
+		transition: all 0.5s cubic-bezier(0.37, 1.14, 0.26, 1.24);
+	}
+	&::before {
+		clip-path: polygon(0 0, 0 0, 0 0);
+	}
+	&:hover::before {
+		clip-path: polygon(0 0, 0 102%, 102% 0);
+	}
+	&::after {
+		clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+	}
+
+	&:hover::after {
+		clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+	}
+}
+
+@keyframes circleAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
